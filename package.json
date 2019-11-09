@@ -26,6 +26,7 @@
         "cors": "^2.8.3",
         "dotenv-safe": "^4.0.4",
         "express": "^4.16.4",
+        "express-validation": "^1.0.3",
         "helmet": "^3.5.0",
         "http-status": "^1.0.1",
         "joi": "^10.4.1"

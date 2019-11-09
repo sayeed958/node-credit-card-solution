@@ -1,9 +1,11 @@
 import * as Joi from 'joi';
 
 export default {
-	checkAccount: {
+	cardValidate: {
 		body: Joi.object().keys({
-			username: Joi.string().required()
+			name: Joi.string().required(),
+			cardNumber: Joi.string().required(),
+			balance: Joi.string().required()
 		})
 	}
 };

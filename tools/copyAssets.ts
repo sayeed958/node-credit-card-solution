@@ -4,3 +4,4 @@ import * as shell from 'shelljs';
 // Copy all the view templates
 shell.cp('-R', 'src/api/utils', 'dist/api');
 shell.cp('-R', 'src/config', 'dist/');
+shell.cp('-R', 'src/database', 'dist/database');
