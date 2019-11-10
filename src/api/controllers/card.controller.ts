@@ -4,7 +4,6 @@ import constants from '../../config/constants';
 import customResponse from '../utils/response';
 import * as fs from 'fs';
 import * as path from "path";
-import JSON = Mocha.reporters.JSON;
 
 
 const { miscMessage, version } = constants;
@@ -13,33 +12,25 @@ class CardController {
 
 	addCreditCard = async (req: express.Request, res: express.Response) => {
 		try {
-			const { name, cardNumber, balance, limit } = req.body;
-            const database:any =  fs.readFileSync(path.join(__dirname , '../../database/database.json'),  'utf8' );
+			const { name, cardNumber, limit } = req.body;
+
+            const database= fs.readFileSync(path.join(__dirname , '../../database/database.json'),  'utf8' );
+
 				const cardData={
-                    name, cardNumber, balance, limit
+                    name, cardNumber, balance:0, limit
 				};
-				//database.push(cardData);
-			console.log(database);
-			const result = {};
-			// if (!result) {
-			// 	return customResponse.setResponse(
-			// 		res,
-			// 		false,
-			// 		httpStatus.BAD_REQUEST,
-			// 		'Invalid parameter',
-			// 		version.v1,
-			// 		{
-			// 			accountExist: false
-			// 		}
-			// 	);
-			// }
+				let databaseParseData=JSON.parse(database);
+            databaseParseData.push(cardData);
+
+            fs.writeFileSync( path.join(__dirname , '../../database/database.json'), JSON.stringify( databaseParseData ) );
+
 			return customResponse.setResponse(
 				res,
 				true,
 				httpStatus.OK,
 				miscMessage.SUCCESS,
 				version.v1,
-                database
+                databaseParseData
 			);
 		}
 		catch (error) {
@@ -57,18 +48,17 @@ class CardController {
 
 	listCreditCard = async (req: express.Request, res: express.Response) => {
         try {
-            const { username } = req.body;
-            const result = {};
+            const database= fs.readFileSync(path.join(__dirname , '../../database/database.json'),  'utf8' );
+
+            const result = JSON.parse(database);
             if (!result) {
                 return customResponse.setResponse(
                     res,
                     false,
                     httpStatus.BAD_REQUEST,
-                    'Invalid prameter',
+                    'Invalid request',
                     version.v1,
-                    {
-                        accountExist: false
-                    }
+                    []
                 );
             }
             return customResponse.setResponse(
@@ -77,9 +67,7 @@ class CardController {
                 httpStatus.OK,
                 miscMessage.SUCCESS,
                 version.v1,
-                {
-                    accountExist: true
-                }
+                result
             );
         }
         catch (error) {

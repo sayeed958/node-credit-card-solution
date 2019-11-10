@@ -1,6 +1,5 @@
 import * as path from 'path';
 import * as dotSafe from 'dotenv-safe';
-import progress = Mocha.reporters.progress;
 /**
  *  import .env variables
  */
