@@ -65,8 +65,8 @@ class CardController {
                 return customResponse.setResponse(
                     res,
                     false,
-                    httpStatus.BAD_REQUEST,
-                    'Invalid request',
+                    httpStatus.INTERNAL_SERVER_ERROR,
+                    miscMessage.FAILED,
                     version.v1,
                     []
                 );

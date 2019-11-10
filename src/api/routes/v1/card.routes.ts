@@ -42,8 +42,7 @@ const {cardValidate} = validation;
    "code": 400,
    "message": "Invalid parameter"
    "appVersion": "v1",
-   "result": {
-    }
+   "result": []
  }
  * @apiSuccessExample {json} Success-Response:
  {
@@ -51,7 +50,12 @@ const {cardValidate} = validation;
   "code": 200,
   "message": "SUCCESS",
   "appVersion": "v1.0.0",
-  "result": []
+  "result": [{
+            "name": "2341324",
+            "cardNumber": 4111111111111111,
+            "balance": 0,
+            "limit": 1
+        }]
 }
  */
 router
@@ -95,12 +99,37 @@ router
   "code": 200,
   "message": "SUCCESS",
   "appVersion": "v1.0.0",
-  "result": []
+  "result":  [
+        {
+            "name": "2341324",
+            "cardNumber": 4111111111111111,
+            "balance": 0,
+            "limit": 1
+        },
+        {
+            "name": "2341324",
+            "cardNumber": 4111111111111111,
+            "balance": 0,
+            "limit": 1
+        },
+        {
+            "name": "2341324",
+            "cardNumber": 4111111111111111,
+            "balance": 0,
+            "limit": 1
+        },
+        {
+            "name": "2341324",
+            "cardNumber": 4111111111111111,
+            "balance": 0,
+            "limit": 1
+        }
+    ]
 }
  */
 
 router
     .route('/list-card')
-    .post(CardController.listCreditCard);
+    .get(CardController.listCreditCard);
 
 export default router;
