@@ -44,7 +44,6 @@ class CardController {
             );
         }
         catch (error) {
-            console.error(error);
             return customResponse.setResponse(
                 res,
                 false,
@@ -81,7 +80,6 @@ class CardController {
             );
         }
         catch (error) {
-            console.error(error);
             return customResponse.setResponse(
                 res,
                 false,

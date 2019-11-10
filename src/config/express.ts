@@ -38,7 +38,7 @@ app.use(vars.basePath, routes);
 
 
 /** catch error and response * */
-app.use(function (err, req, res) {
+app.use(function (err, req, res,next) {
     res.status(400).json(err);
 });
 
