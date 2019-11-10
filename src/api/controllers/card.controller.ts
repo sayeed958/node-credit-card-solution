@@ -4,51 +4,61 @@ import constants from '../../config/constants';
 import customResponse from '../utils/response';
 import * as fs from 'fs';
 import * as path from "path";
+import * as luhnCheck from 'luhn';
 
-
-const { miscMessage, version } = constants;
+const {miscMessage, version} = constants;
 
 class CardController {
 
-	addCreditCard = async (req: express.Request, res: express.Response) => {
-		try {
-			const { name, cardNumber, limit } = req.body;
+    addCreditCard = async (req: express.Request, res: express.Response) => {
+        try {
+            const {name, cardNumber, limit} = req.body;
 
-            const database= fs.readFileSync(path.join(__dirname , '../../database/database.json'),  'utf8' );
+            if (!luhnCheck.validate(cardNumber)) {
+                return customResponse.setResponse(
+                    res,
+                    false,
+                    400,
+                    miscMessage.INVALID_CARD,
+                    version.v1,
+                    []
+                );
+            }
+            const database = fs.readFileSync(path.join(__dirname, '../../database/database.json'), 'utf8');
 
-				const cardData={
-                    name, cardNumber, balance:0, limit
-				};
-				let databaseParseData=JSON.parse(database);
+            const cardData = {
+                name, cardNumber, balance: 0, limit
+            };
+            let databaseParseData = JSON.parse(database);
             databaseParseData.push(cardData);
 
-            fs.writeFileSync( path.join(__dirname , '../../database/database.json'), JSON.stringify( databaseParseData ) );
+            fs.writeFileSync(path.join(__dirname, '../../database/database.json'), JSON.stringify(databaseParseData));
 
-			return customResponse.setResponse(
-				res,
-				true,
-				httpStatus.OK,
-				miscMessage.SUCCESS,
-				version.v1,
+            return customResponse.setResponse(
+                res,
+                true,
+                httpStatus.OK,
+                miscMessage.SUCCESS,
+                version.v1,
                 databaseParseData
-			);
-		}
-		catch (error) {
-			console.error(error);
-			return customResponse.setResponse(
-				res,
-				false,
-				httpStatus.INTERNAL_SERVER_ERROR,
-				miscMessage.FAILED,
-				version.v1,
-				error
-			);
-		}
-	};
+            );
+        }
+        catch (error) {
+            console.error(error);
+            return customResponse.setResponse(
+                res,
+                false,
+                httpStatus.INTERNAL_SERVER_ERROR,
+                miscMessage.FAILED,
+                version.v1,
+                error
+            );
+        }
+    };
 
-	listCreditCard = async (req: express.Request, res: express.Response) => {
+    listCreditCard = async (req: express.Request, res: express.Response) => {
         try {
-            const database= fs.readFileSync(path.join(__dirname , '../../database/database.json'),  'utf8' );
+            const database = fs.readFileSync(path.join(__dirname, '../../database/database.json'), 'utf8');
 
             const result = JSON.parse(database);
             if (!result) {

@@ -1,103 +1,104 @@
 {
-    "name": "credit-card-solution",
-    "version": "1.0.0",
-    "description": "Credit Card Solution Test",
-    "author": "Mohammad Sayeed",
-    "main": "src/index.js",
-    "private": true,
-    "engines": {
-        "node": ">=7.6",
-        "yarn": "*"
+  "name": "credit-card-solution",
+  "version": "1.0.0",
+  "description": "Credit Card Solution Test",
+  "author": "Mohammad Sayeed",
+  "main": "src/index.js",
+  "private": true,
+  "engines": {
+    "node": ">=7.6",
+    "yarn": "*"
+  },
+  "scripts": {
+    "clean": "rimraf dist/*",
+    "copy-assets": "ts-node tools/copyAssets",
+    "build": "npm-run-all clean tsc copy-assets",
+    "tsc": "tsc",
+    "dev:start": "npm-run-all build start",
+    "dev": "nodemon --watch src -e ts,ejs --exec npm run dev:start",
+    "start": "node ./dist/index.js",
+    "prod": "tsc && node ./dist/index.js",
+    "test": "mocha -r ts-node/register ./test/*.test.ts",
+    "docs": "apidoc -i src -o docs"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.3",
+    "dotenv-safe": "^4.0.4",
+    "express": "^4.16.4",
+    "express-validation": "^1.0.3",
+    "helmet": "^3.5.0",
+    "http-status": "^1.0.1",
+    "joi": "^10.4.1",
+    "luhn": "^2.4.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/chai-http": "^4.2.0",
+    "@types/lodash": "^4.14.126",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^12.12.7",
+    "@types/shelljs": "^0.8.5",
+    "@typescript-eslint/eslint-plugin": "^2.3.0",
+    "@typescript-eslint/parser": "^2.3.0",
+    "apidoc": "^0.17.7",
+    "babel-eslint": "^10.0.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "mocha": "^6.1.4",
+    "nodemon": "^1.19.4",
+    "npm-run-all": "^4.1.5",
+    "shelljs": "^0.8.3",
+    "ts-node": "^8.1.0",
+    "ts-node-dev": "^1.0.0-pre.39",
+    "tslint-eslint-rules": "^5.4.0",
+    "typescript": "^3.4.5"
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "parser": "babel-eslint",
+    "env": {
+      "es6": true,
+      "browser": true
     },
-    "scripts": {
-        "clean": "rimraf dist/*",
-        "copy-assets": "ts-node tools/copyAssets",
-        "build": "npm-run-all clean tsc copy-assets",
-        "tsc": "tsc",
-        "dev:start": "npm-run-all build start",
-        "dev": "nodemon --watch src -e ts,ejs --exec npm run dev:start",
-        "start": "node ./dist/index.js",
-        "prod": "tsc && node ./dist/index.js",
-        "test": "mocha -r ts-node/register ./test/*.test.ts",
-        "docs": "apidoc -i src -o docs"
-    },
-    "dependencies": {
-        "body-parser": "^1.19.0",
-        "cors": "^2.8.3",
-        "dotenv-safe": "^4.0.4",
-        "express": "^4.16.4",
-        "express-validation": "^1.0.3",
-        "helmet": "^3.5.0",
-        "http-status": "^1.0.1",
-        "joi": "^10.4.1"
-    },
-    "devDependencies": {
-        "@types/chai": "^4.1.7",
-        "@types/chai-http": "^4.2.0",
-        "@types/lodash": "^4.14.126",
-        "@types/mocha": "^5.2.6",
-        "@types/node": "^12.12.7",
-        "@types/shelljs": "^0.8.5",
-        "@typescript-eslint/eslint-plugin": "^2.3.0",
-        "@typescript-eslint/parser": "^2.3.0",
-        "apidoc": "^0.17.7",
-        "babel-eslint": "^10.0.3",
-        "chai": "^4.2.0",
-        "chai-http": "^4.3.0",
-        "eslint": "^6.4.0",
-        "eslint-config-airbnb-base": "^14.0.0",
-        "eslint-plugin-import": "^2.18.2",
-        "mocha": "^6.1.4",
-        "nodemon": "^1.19.4",
-        "npm-run-all": "^4.1.5",
-        "shelljs": "^0.8.3",
-        "ts-node": "^8.1.0",
-        "ts-node-dev": "^1.0.0-pre.39",
-        "tslint-eslint-rules": "^5.4.0",
-        "typescript": "^3.4.5"
-    },
-    "eslintConfig": {
-        "extends": "airbnb-base",
-        "parser": "babel-eslint",
-        "env": {
-            "es6": true,
-            "browser": true
-        },
-        "rules": {
-            "brace-style": [
-                "error",
-                "stroustrup"
-            ],
-            "comma-dangle": [
-                "error",
-                "never"
-            ],
-            "no-unused-vars": [
-                "warn"
-            ],
-            "no-var": [
-                "off"
-            ],
-            "one-var": [
-                "off"
-            ],
-            "no-tabs": [
-                "off"
-            ],
-            "indent": [
-                "error",
-                "tab"
-            ],
-            "no-console": [
-                "off"
-            ],
-            "import/no-unresolved": [
-                "off"
-            ],
-            "dot-notation": [
-                "off"
-            ]
-        }
-    },
-    "license": "ISC"
+    "rules": {
+      "brace-style": [
+        "error",
+        "stroustrup"
+      ],
+      "comma-dangle": [
+        "error",
+        "never"
+      ],
+      "no-unused-vars": [
+        "warn"
+      ],
+      "no-var": [
+        "off"
+      ],
+      "one-var": [
+        "off"
+      ],
+      "no-tabs": [
+        "off"
+      ],
+      "indent": [
+        "error",
+        "tab"
+      ],
+      "no-console": [
+        "off"
+      ],
+      "import/no-unresolved": [
+        "off"
+      ],
+      "dot-notation": [
+        "off"
+      ]
+    }
+  },
+  "license": "ISC"
 }

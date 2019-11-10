@@ -1,9 +1,10 @@
 import * as express from 'express';
 import CardController from '../../controllers/card.controller';
 import * as validate from 'express-validation';
-import joi from '../../validations/card.validation';
+import validation from '../../validations/card.validation';
+
 const router = express.Router();
-const {cardValidate}=joi;
+const {cardValidate} = validation;
 
 /**
  * @api {post} /api/v1/add-card addCreditCard
@@ -36,14 +37,14 @@ const {cardValidate}=joi;
  * @apiError (Internal Server Error 500)   {Number}    code      500=Internal Server Error
  * @apiError (Internal Server Error 500)   {Object[]}  result    Blank Object
  * @apiErrorExample {json} List error
-  {
-    "status": false,
-    "code": 400,
-    "message": "Invalid parameter"
-    "appVersion": "v1",
-    "result": {
-     }
-  }
+ {
+   "status": false,
+   "code": 400,
+   "message": "Invalid parameter"
+   "appVersion": "v1",
+   "result": {
+    }
+ }
  * @apiSuccessExample {json} Success-Response:
  {
   "status": true,
@@ -55,7 +56,7 @@ const {cardValidate}=joi;
  */
 router
     .route('/add-card')
-    .post(validate(cardValidate),CardController.addCreditCard);
+    .post(validate(cardValidate), CardController.addCreditCard);
 
 /**
  * @api {post} /api/v1/list-card listCreditCard
@@ -99,7 +100,7 @@ router
  */
 
 router
-	.route('/list-card')
-	.post(CardController.listCreditCard);
+    .route('/list-card')
+    .post(CardController.listCreditCard);
 
 export default router;

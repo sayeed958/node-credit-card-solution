@@ -1,11 +1,12 @@
 export default {
-	miscMessage: {
-		SUCCESS: 'SUCCESS',
-		FAILED: 'FAILED',
+    miscMessage: {
+        SUCCESS: 'SUCCESS',
+        FAILED: 'FAILED',
         VALIDATION_ERROR: 'Validation error',
-        NOT_FOUND:'Not found!'
-	},
-    version :{
+        INVALID_CARD: 'Invalid credit card number',
+        NOT_FOUND: 'Not found!'
+    },
+    version: {
         v1: 'v1'
     }
 

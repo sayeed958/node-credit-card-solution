@@ -5,11 +5,13 @@ class CustomResponse {
     /**
      * constructor
      */
-    constructor() { }
+    constructor() {
+    }
+
     public result;
     public res;
     public successStatus;
-    public status ;
+    public status;
     public message;
     public appVersion;
     public platformstatus
