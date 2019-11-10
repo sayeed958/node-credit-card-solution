@@ -24,4 +24,10 @@ To create api docs
 To run unit test
 
 
-Your app is ready to be deployed!
+### General overview of written node script
+ - Type script (all custom written script not used any boiler plate)
+ - Files system as database(Allow any machine to store data into json format without using additional database setup)
+ - Airbnb coding standard
+ - Mocha and chai for unit test cases
+ - API docs to write api documentation
+
