@@ -1,23 +1,37 @@
-## Process to run this project
+**Steps to run this project**
 
-In the project directory, you can run:
+In the project directory, you can run below command to run the project
 
-### `yarn`
+_If you don't have installed yarn please install first_
+_`npm install -g yarn`_
+
+
+
 To install all the dependencies
+## `yarn`
 
-## Update the .env if you want to change the port default is 4000
 
+**Compile typescript and run node server**
 
 ## `yarn dev`
 
-To compile typescript and run node server
+- It will compile and make a build into dist directory
+- By default it will run on PORT 4000
+- Update the .env if you want to change default port
 
+**Run the server on pre compiled files**
+
+## `yarn start`
+
+
+**Create build only**
 
 ### `yarn build`
-Create build only
 
+
+**To create api docs**
 ### `yarn docs`
-To create api docs
+
 
 
 ### `yarn test`
@@ -25,8 +39,8 @@ To run unit test
 
 
 ### General overview of written node script
- - Type script (all custom written script not used any boiler plate)
- - Files system as database(Allow any machine to store data into json format without using additional database setup)
+ - Fully Typescript 
+ - Files system as database(Allowed on any machine to store data into json format without using additional database setup)
  - Airbnb coding standard
  - Mocha and chai for unit test cases
  - API docs to write api documentation
