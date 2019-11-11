@@ -33,9 +33,10 @@ To install all the dependencies
 ### `yarn docs`
 
 
+**To run unit test(Please make sure server is running before running unit test case)**
 
 ### `yarn test`
-To run unit test
+
 
 
 ### General overview of written node script
